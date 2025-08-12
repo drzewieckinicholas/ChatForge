@@ -5,3 +5,6 @@
 ## Notes: Lorem ipsum dolor sit amet
 ## SavedVariables: ChatForgeDB
 ## Version: @project-version@
+
+# Init
+Init\Init.lua
