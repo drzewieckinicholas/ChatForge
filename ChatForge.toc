@@ -1,0 +1,7 @@
+## Interface: 11507
+## Interface-Classic: 11507
+## Title: ChatForge
+## Author: Nicholas Drzewiecki
+## Notes: Lorem ipsum dolor sit amet
+## SavedVariables: ChatForgeDB
+## Version: @project-version@
