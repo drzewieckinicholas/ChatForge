@@ -1,1 +1,4 @@
 .vscode
+Libs/*
+!Libs/Libs.xml
+!Libs/LICENSE.txt
