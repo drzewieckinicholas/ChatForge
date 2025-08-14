@@ -2,9 +2,10 @@
 ## Interface-Classic: 11507
 ## Title: ChatForge
 ## Author: Nicholas Drzewiecki
-## Notes: Lorem ipsum dolor sit amet
+## Notes: Customize the appearance and functionality of the chat.
 ## SavedVariables: ChatForgeDB
 ## Version: @project-version@
+## X-Curse-Project-ID: 1327254
 
 # Libs
 Libs\Libs.xml
