@@ -21,7 +21,7 @@ function FontOptions:CreateOptionsTableForChatFrame(chatFrame, index)
         order = 2,
         type = 'group',
         name = FontModule.moduleName,
-        desc = 'Adjust font settings.',
+        desc = 'Configure font appearance.',
         args = {
             fontSettings = {
                 order = 1,

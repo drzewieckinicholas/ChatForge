@@ -9,9 +9,9 @@ local ChatFrameUtils = Private.Utils.ChatFrame
 
 local defaults = {
     filter = {
-        caseSensitive = false,
-        enabled = false,
-        exactMatch = false,
+        isCaseSensitive = false,
+        isEnabled = false,
+        isExactMatch = false,
         words = {}
     },
     font = {

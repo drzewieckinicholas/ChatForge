@@ -37,8 +37,8 @@ end
 --- @class MessageContainsFilterWordOptions
 --- @field message string
 --- @field words table
---- @field caseSensitive? boolean
---- @field exactMatch? boolean
+--- @field isCaseSensitive? boolean
+--- @field isExactMatch? boolean
 
 --- Checks if a message contains any of the filter words.
 --- @param options MessageContainsFilterWordOptions
@@ -61,17 +61,17 @@ function FilterUtils:MessageContainsFilterWord(options)
         return false
     end
 
-    local caseSensitive = options.caseSensitive or false
-    local exactMatch = options.exactMatch or false
+    local isCaseSensitive = options.isCaseSensitive or false
+    local isExactMatch = options.isExactMatch or false
 
-    if not caseSensitive then
+    if not isCaseSensitive then
         messageToCheck = string_lower(messageToCheck)
     end
 
-    if exactMatch then
+    if isExactMatch then
         for i = 1, wordCount do
             local filterWord = options.words[i]
-            local wordToCheck = caseSensitive and filterWord or string_lower(filterWord)
+            local wordToCheck = isCaseSensitive and filterWord or string_lower(filterWord)
             local pattern = createWordBoundaryPattern(wordToCheck)
 
             if string_find(messageToCheck, pattern) then
@@ -81,7 +81,7 @@ function FilterUtils:MessageContainsFilterWord(options)
     else
         for i = 1, wordCount do
             local filterWord = options.words[i]
-            local wordToCheck = caseSensitive and filterWord or string_lower(filterWord)
+            local wordToCheck = isCaseSensitive and filterWord or string_lower(filterWord)
 
             if string_find(messageToCheck, wordToCheck, 1, true) then
                 return true
@@ -108,7 +108,7 @@ end
 --- @class FilterWordExistsOptions
 --- @field word string
 --- @field words table
---- @field caseSensitive? boolean
+--- @field isCaseSensitive? boolean
 
 --- Checks if a filter word already exists in the list.
 --- @param options FilterWordExistsOptions
@@ -118,14 +118,14 @@ function FilterUtils:FilterWordExists(options)
     assert(type(options.word) == 'string', string_format(ERROR_MESSAGES.WORD_TYPE, type(options.word)))
     assert(type(options.words) == 'table', string_format(ERROR_MESSAGES.WORDS_TYPE, type(options.words)))
 
-    local caseSensitive = options.caseSensitive or false
-    local wordToCheck = caseSensitive and options.word or string_lower(options.word)
+    local isCaseSensitive = options.isCaseSensitive or false
+    local wordToCheck = isCaseSensitive and options.word or string_lower(options.word)
 
     local wordCount = #options.words
 
     for i = 1, wordCount do
         local existingWord = options.words[i]
-        local existingWordToCheck = caseSensitive and existingWord or string_lower(existingWord)
+        local existingWordToCheck = isCaseSensitive and existingWord or string_lower(existingWord)
 
         if wordToCheck == existingWordToCheck then
             return true

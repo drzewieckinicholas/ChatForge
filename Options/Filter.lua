@@ -96,7 +96,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
         name = 'Filter Words',
         inline = true,
         disabled = function()
-            return not filterDatabase.enabled
+            return not filterDatabase.isEnabled
         end,
         args = createFilterWordList(chatFrame, index)
     }
@@ -116,10 +116,10 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 desc = 'Enable message filtering for this chat frame.',
                 width = 'full',
                 get = function()
-                    return filterDatabase.enabled
+                    return filterDatabase.isEnabled
                 end,
                 set = function(_, value)
-                    filterDatabase.enabled = value
+                    filterDatabase.isEnabled = value
 
                     FilterModule:UpdateFilterState(chatFrame)
                 end
@@ -130,33 +130,33 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 name = 'Filter Settings',
                 inline = true,
                 disabled = function()
-                    return not filterDatabase.enabled
+                    return not filterDatabase.isEnabled
                 end,
                 args = {
-                    caseSensitive = {
+                    isCaseSensitive = {
                         order = 1,
                         type = 'toggle',
                         name = 'Case Sensitive',
                         desc = 'Enable case-sensitive matching.',
                         width = 'full',
                         get = function()
-                            return filterDatabase.caseSensitive
+                            return filterDatabase.isCaseSensitive
                         end,
                         set = function(_, value)
-                            filterDatabase.caseSensitive = value
+                            filterDatabase.isCaseSensitive = value
                         end
                     },
-                    exactMatch = {
+                    isExactMatch = {
                         order = 2,
                         type = 'toggle',
                         name = 'Exact Match',
                         desc = 'Match whole words only.',
                         width = 'full',
                         get = function()
-                            return filterDatabase.exactMatch
+                            return filterDatabase.isExactMatch
                         end,
                         set = function(_, value)
-                            filterDatabase.exactMatch = value
+                            filterDatabase.isExactMatch = value
                         end
                     }
                 }
@@ -167,7 +167,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 name = 'Add Filter Word',
                 inline = true,
                 disabled = function()
-                    return not filterDatabase.enabled
+                    return not filterDatabase.isEnabled
                 end,
                 args = {
                     wordInput = {
@@ -217,7 +217,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 desc = 'Remove all filter words for this chat frame.',
                 width = 'full',
                 disabled = function()
-                    return not filterDatabase.enabled or #filterDatabase.words == 0
+                    return not filterDatabase.isEnabled or #filterDatabase.words == 0
                 end,
                 confirm = function()
                     return 'Are you sure you want to clear all filter words?'

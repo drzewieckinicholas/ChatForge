@@ -19,6 +19,7 @@ local ERROR_MESSAGES = {
 --- @field size number?
 --- @field style string?
 
+--- Updates the font settings for a chat frame.
 --- @param chatFrame table
 --- @param fontOptions? FontOptions
 function FontModule:UpdateFont(chatFrame, fontOptions)

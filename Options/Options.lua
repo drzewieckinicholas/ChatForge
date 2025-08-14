@@ -32,7 +32,7 @@ local function createOptionsTable()
                 order = 1,
                 type = 'group',
                 name = 'Chat Frames',
-                desc = 'Lorem ipsum dolor sit amet',
+                desc = 'Configure chat frames.',
                 args = {},
             },
         },

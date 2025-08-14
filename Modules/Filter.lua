@@ -23,15 +23,15 @@ function FilterModule:ShouldFilterMessage(chatFrame, message)
     local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
     local filterDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
 
-    if not filterDatabase.enabled or #filterDatabase.words == 0 then
+    if not filterDatabase.isEnabled or #filterDatabase.words == 0 then
         return false
     end
 
     return FilterUtils:MessageContainsFilterWord({
         message = message,
         words = filterDatabase.words,
-        caseSensitive = filterDatabase.caseSensitive,
-        exactMatch = filterDatabase.exactMatch
+        isCaseSensitive = filterDatabase.isCaseSensitive,
+        isExactMatch = filterDatabase.isExactMatch
     })
 end
 
@@ -51,7 +51,7 @@ function FilterModule:AddFilterWord(chatFrame, word)
     if FilterUtils:FilterWordExists({
             word = normalizedWord,
             words = filterDatabase.words,
-            caseSensitive = filterDatabase.caseSensitive
+            isCaseSensitive = filterDatabase.isCaseSensitive
         }) then
         return false, 'Filter word already exists'
     end
@@ -146,7 +146,7 @@ function FilterModule:UpdateFilterState(chatFrame)
     local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
     local filterDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
 
-    if filterDatabase.enabled then
+    if filterDatabase.isEnabled then
         self:RegisterFiltersForChatFrame(chatFrame)
     else
         self:UnregisterFiltersForChatFrame(chatFrame)

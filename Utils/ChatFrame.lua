@@ -12,6 +12,7 @@ local isCacheInitialized = false
 local CHAT_FRAME_PREFIX = 'ChatFrame'
 local CHAT_TAB_SUFFIX = 'Tab'
 
+--- Initializes the chat frame and tab caches.
 function ChatFrameUtils:InitializeCaches()
     if isCacheInitialized then
         return true
@@ -38,10 +39,12 @@ function ChatFrameUtils:InitializeCaches()
     return true
 end
 
+--- Checks if the caches have been initialized.
 function ChatFrameUtils:IsCacheInitialized()
     return isCacheInitialized
 end
 
+--- Ensures the caches are initialized before use.
 --- @return nil
 function ChatFrameUtils:EnsureCacheInitialized()
     if not isCacheInitialized then
@@ -49,6 +52,7 @@ function ChatFrameUtils:EnsureCacheInitialized()
     end
 end
 
+--- Executes a callback function for each chat frame.
 --- @param callback function
 --- @return nil
 function ChatFrameUtils:ForEachChatFrame(callback)
@@ -63,28 +67,32 @@ function ChatFrameUtils:ForEachChatFrame(callback)
     end
 end
 
+--- Retrieves a chat frame by its index.
 --- @param index number
---- @return table?
+--- @return table|nil
 function ChatFrameUtils:GetChatFrame(index)
     self:EnsureCacheInitialized()
 
     return chatFrameCache[index]
 end
 
+--- Retrieves the ID of a chat frame.
 --- @param chatFrame table
 --- @return number
 function ChatFrameUtils:GetChatFrameId(chatFrame)
     return chatFrame:GetID()
 end
 
+--- Retrieves the name of a chat frame.
 --- @param chatFrame table
 --- @return string
 function ChatFrameUtils:GetChatFrameName(chatFrame)
     return chatFrame:GetName()
 end
 
+--- Retrieves the tab associated with a chat frame.
 --- @param chatFrame table
---- @return table?
+--- @return table|nil
 function ChatFrameUtils:GetChatTab(chatFrame)
     self:EnsureCacheInitialized()
 
@@ -93,6 +101,7 @@ function ChatFrameUtils:GetChatTab(chatFrame)
     return chatTabCache[chatFrameId]
 end
 
+--- Retrieves the text displayed on a chat frame's tab.
 --- @param chatFrame table
 --- @return string|nil
 function ChatFrameUtils:GetChatTabName(chatFrame)
