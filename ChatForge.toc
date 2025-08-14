@@ -13,13 +13,16 @@ Libs\Libs.xml
 Init\Init.lua
 
 # Constants
+Constants\Filter.lua
 Constants\Font.lua
 
 # Utils
 Utils\ChatFrame.lua
 Utils\Database.lua
+Utils\Filter.lua
 
 # Modules
+Modules\Filter.lua
 Modules\Font.lua
 
 # Hooks
@@ -30,5 +33,6 @@ Core\Database.lua
 Core\Core.lua
 
 # Options
+Options\Filter.lua
 Options\Font.lua
 Options\Options.lua

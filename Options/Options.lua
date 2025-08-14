@@ -9,20 +9,20 @@ local Private = select(2, ...)
 
 local Options = {}
 
+local FilterOptions = Private.Options.Filter
 local FontOptions = Private.Options.Font
 
 local ChatFrameUtils = Private.Utils.ChatFrame
 
 --- @param chatFrame table
 --- @param index number
---- @return table
 local function createOptionsTableForChatFrame(chatFrame, index)
     return {
-        font = FontOptions:CreateOptionsTableForChatFrame(chatFrame, index),
+        filter = FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index),
+        font = FontOptions:CreateOptionsTableForChatFrame(chatFrame, index)
     }
 end
 
---- @return table
 local function createOptionsTable()
     local options = {
         type = 'group',

@@ -94,7 +94,7 @@ function ChatFrameUtils:GetChatTab(chatFrame)
 end
 
 --- @param chatFrame table
---- @return string?
+--- @return string|nil
 function ChatFrameUtils:GetChatTabName(chatFrame)
     self:EnsureCacheInitialized()
 
