@@ -52,8 +52,8 @@ function FilterUtils:MessageContainsFilterWord(options)
         return false
     end
 
-    assert(type(options.message) == 'string', ERROR_MESSAGES.MESSAGE_TYPE:format(type(options.message)))
-    assert(type(options.words) == 'table', ERROR_MESSAGES.WORDS_TYPE:format(type(options.words)))
+    assert(type(options.message) == 'string', string_format(ERROR_MESSAGES.MESSAGE_TYPE, type(options.message)))
+    assert(type(options.words) == 'table', string_format(ERROR_MESSAGES.WORDS_TYPE, type(options.words)))
 
     local messageToCheck = self:NormalizeFilterWord(options.message)
 
@@ -115,8 +115,8 @@ end
 function FilterUtils:FilterWordExists(options)
     assert(options.word, ERROR_MESSAGES.MISSING_WORD)
     assert(options.words, ERROR_MESSAGES.MISSING_WORDS)
-    assert(type(options.word) == 'string', ERROR_MESSAGES.WORD_TYPE:format(type(options.word)))
-    assert(type(options.words) == 'table', ERROR_MESSAGES.WORDS_TYPE:format(type(options.words)))
+    assert(type(options.word) == 'string', string_format(ERROR_MESSAGES.WORD_TYPE, type(options.word)))
+    assert(type(options.words) == 'table', string_format(ERROR_MESSAGES.WORDS_TYPE, type(options.words)))
 
     local caseSensitive = options.caseSensitive or false
     local wordToCheck = caseSensitive and options.word or string_lower(options.word)
