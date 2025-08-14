@@ -6,5 +6,29 @@
 ## SavedVariables: ChatForgeDB
 ## Version: @project-version@
 
+# Libs
+Libs\Libs.xml
+
 # Init
 Init\Init.lua
+
+# Constants
+Constants\Font.lua
+
+# Utils
+Utils\ChatFrame.lua
+Utils\Database.lua
+
+# Modules
+Modules\Font.lua
+
+# Hooks
+Hooks\ChatFrame.lua
+
+# Core
+Core\Database.lua
+Core\Core.lua
+
+# Options
+Options\Font.lua
+Options\Options.lua
