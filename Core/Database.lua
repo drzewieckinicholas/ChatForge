@@ -8,6 +8,12 @@ local Database = {}
 local ChatFrameUtils = Private.Utils.ChatFrame
 
 local defaults = {
+    filter = {
+        caseSensitive = false,
+        enabled = false,
+        exactMatch = false,
+        words = {}
+    },
     font = {
         name = 'Fonts\\ARIALN.TTF',
         size = 14,
@@ -17,7 +23,8 @@ local defaults = {
 
 function Database.GetChatFrameDefaults()
     return {
-        font = defaults.font,
+        filter = defaults.filter,
+        font = defaults.font
     }
 end
 

@@ -14,12 +14,11 @@ local DatabaseUtils = Private.Utils.Database
 
 --- @param chatFrame table
 --- @param index number
---- @return table
 function FontOptions:CreateOptionsTableForChatFrame(chatFrame, index)
     local databaseFont = DatabaseUtils.GetChatFramesTable(index, 'font')
 
     return {
-        order = 1,
+        order = 2,
         type = 'group',
         name = FontModule.moduleName,
         desc = 'Adjust font settings.',

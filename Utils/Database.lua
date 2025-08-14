@@ -8,7 +8,7 @@ local DatabaseUtils = {}
 local ERROR_MESSAGE_DATABASE_NOT_INITIALIZED = 'Database not initialized'
 
 --- @param index number
---- @param key 'font'
+--- @param key 'filter'|'font'
 --- @return table
 function DatabaseUtils.GetChatFramesTable(index, key)
     assert(Private.database, ERROR_MESSAGE_DATABASE_NOT_INITIALIZED)
