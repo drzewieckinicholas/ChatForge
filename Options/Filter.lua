@@ -104,7 +104,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
     filterWordsGroups[index] = filterWordsGroup
 
     return {
-        order = 1,
+        order = 2,
         type = 'group',
         name = FilterModule.moduleName,
         desc = 'Configure message filtering.',
