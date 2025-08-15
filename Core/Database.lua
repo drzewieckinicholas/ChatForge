@@ -8,6 +8,13 @@ local Database = {}
 local ChatFrameUtils = Private.Utils.ChatFrame
 
 local defaults = {
+    border = {
+        color = { 1, 1, 1, 1 },
+        isEnabled = false,
+        margin = 2,
+        size = 12,
+        texture = 'Interface\\DialogFrame\\UI-DialogBox-Border'
+    },
     filter = {
         isCaseSensitive = false,
         isEnabled = false,
@@ -23,6 +30,7 @@ local defaults = {
 
 function Database.GetChatFrameDefaults()
     return {
+        border = defaults.border,
         filter = defaults.filter,
         font = defaults.font
     }

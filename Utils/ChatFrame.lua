@@ -10,6 +10,7 @@ local chatTabCache = {}
 local isCacheInitialized = false
 
 local CHAT_FRAME_PREFIX = 'ChatFrame'
+local CHAT_BACKGROUND_SUFFIX = 'Background'
 local CHAT_TAB_SUFFIX = 'Tab'
 
 --- Initializes the chat frame and tab caches.
@@ -74,6 +75,16 @@ function ChatFrameUtils:GetChatFrame(index)
     self:EnsureCacheInitialized()
 
     return chatFrameCache[index]
+end
+
+--- Retrieves the background element of a chat frame.
+--- @param chatFrame table
+--- @return table|nil
+function ChatFrameUtils:GetChatFrameBackground(chatFrame)
+    local chatFrameName = self:GetChatFrameName(chatFrame)
+    local backgroundName = chatFrameName .. CHAT_BACKGROUND_SUFFIX
+
+    return _G[backgroundName]
 end
 
 --- Retrieves the ID of a chat frame.

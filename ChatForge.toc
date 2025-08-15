@@ -14,6 +14,7 @@ Libs\Libs.xml
 Init\Init.lua
 
 # Constants
+Constants\Border.lua
 Constants\Filter.lua
 Constants\Font.lua
 
@@ -23,6 +24,7 @@ Utils\Database.lua
 Utils\Filter.lua
 
 # Modules
+Modules\Border.lua
 Modules\Filter.lua
 Modules\Font.lua
 
@@ -34,6 +36,7 @@ Core\Database.lua
 Core\Core.lua
 
 # Options
+Options\Border.lua
 Options\Filter.lua
 Options\Font.lua
 Options\Options.lua

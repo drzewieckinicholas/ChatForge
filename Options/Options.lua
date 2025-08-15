@@ -9,6 +9,7 @@ local Private = select(2, ...)
 
 local Options = {}
 
+local BorderOptions = Private.Options.Border
 local FilterOptions = Private.Options.Filter
 local FontOptions = Private.Options.Font
 
@@ -18,6 +19,7 @@ local ChatFrameUtils = Private.Utils.ChatFrame
 --- @param index number
 local function createOptionsTableForChatFrame(chatFrame, index)
     return {
+        border = BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index),
         filter = FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index),
         font = FontOptions:CreateOptionsTableForChatFrame(chatFrame, index)
     }
