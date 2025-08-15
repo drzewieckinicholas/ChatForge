@@ -11,9 +11,9 @@ local defaults = {
     border = {
         color = { 1, 1, 1, 1 },
         isEnabled = false,
-        margin = 2,
+        margin = 2.5,
         size = 12,
-        texture = 'Interface\\DialogFrame\\UI-DialogBox-Border'
+        texture = 'Interface\\Tooltips\\UI-Tooltip-Border'
     },
     filter = {
         isCaseSensitive = false,
