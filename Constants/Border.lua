@@ -8,7 +8,6 @@ Private.Constants.Border = {
         DEFAULT = { 1, 1, 1, 1 }
     },
     Margin = {
-        DEFAULT = 2.5,
         MAX = 8,
         MIN = 0,
         STEP = 0.5

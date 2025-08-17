@@ -5,9 +5,10 @@ Private.Constants = Private.Constants or {}
 
 Private.Constants.Copy = {
     Dialog = {
+        FRAME_STRATA = 'DIALOG',
         HEIGHT = 250,
-        WIDTH = 400,
-        LAYOUT = 'Fill'
+        LAYOUT = 'Fill',
+        WIDTH = 400
     },
     Messages = {
         DEFAULT_COUNT = 50,

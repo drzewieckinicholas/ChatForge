@@ -115,6 +115,7 @@ end
 --- Creates the copy dialog frame.
 --- @return table
 local function createDialogFrame()
+    --- @class AceGUIFrame : AceGUIContainer
     local frame = AceGUI:Create('Frame')
 
     frame:SetTitle(string_format('%s - Copy', AddonName))
@@ -123,12 +124,16 @@ local function createDialogFrame()
     frame:SetLayout(CopyConstants.Dialog.LAYOUT)
     frame:EnableResize(false)
 
+    frame.frame:SetClampedToScreen(true)
+    frame.frame:SetFrameStrata(CopyConstants.FRAME_STRATA)
+
     return frame
 end
 
 --- Creates the multi-line edit box.
 --- @return table
 local function createMultiLineEditBox()
+    --- @class AceGUIMultiLineEditBox : AceGUIWidget
     local editBox = AceGUI:Create('MultiLineEditBox')
 
     editBox:SetLabel('')
