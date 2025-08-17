@@ -34,9 +34,9 @@ local function handleSetChatWindowFontSize(self, chatFrame, fontSize)
 	assert(type(fontSize) == 'number', ERROR_MESSAGE_FONTSIZE_TYPE:format(type(fontSize)))
 
 	local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
-	local fontDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'font')
+	local databaseFont = DatabaseUtils.GetChatFramesTable(chatFrameId, 'font')
 
-	fontDatabase.size = fontSize
+	databaseFont.size = fontSize
 
 	FontModule:UpdateFont(chatFrame, { size = fontSize })
 
@@ -59,9 +59,9 @@ local function handleTabOnClick(chatTab, button)
 	end
 
 	local chatTabName = ChatFrameUtils:GetChatTabName(chatFrame)
-	local copyDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'copy')
+	local databaseCopy = DatabaseUtils.GetChatFramesTable(chatFrameId, 'copy')
 
-	if copyDatabase.isEnabled then
+	if databaseCopy.isEnabled then
 		CopyModule:ShowCopyDialog(chatFrame)
 	else
 		chatFrame:AddMessage(

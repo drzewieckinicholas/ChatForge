@@ -14,7 +14,7 @@ local DatabaseUtils = Private.Utils.Database
 --- @param chatFrame table
 --- @param index number
 function CopyOptions:CreateOptionsTableForChatFrame(chatFrame, index)
-    local copyDatabase = DatabaseUtils.GetChatFramesTable(index, 'copy')
+    local databaseCopy = DatabaseUtils.GetChatFramesTable(index, 'copy')
 
     return {
         order = 2,
@@ -30,10 +30,10 @@ function CopyOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 'Enable copying messages from this chat frame.\n\nCtrl + left-click on the chat tab to open the copy dialog.',
                 width = 'full',
                 get = function()
-                    return copyDatabase.isEnabled
+                    return databaseCopy.isEnabled
                 end,
                 set = function(_, value)
-                    copyDatabase.isEnabled = value
+                    databaseCopy.isEnabled = value
 
                     CopyModule:UpdateCopyIsEnabled(index, value)
                 end
@@ -44,7 +44,7 @@ function CopyOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 name = 'Copy Settings',
                 inline = true,
                 disabled = function()
-                    return not copyDatabase.isEnabled
+                    return not databaseCopy.isEnabled
                 end,
                 args = {
                     messageCount = {
@@ -57,10 +57,10 @@ function CopyOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         step = CopyConstants.Messages.STEP,
                         width = 'full',
                         get = function()
-                            return copyDatabase.messageCount
+                            return databaseCopy.messageCount
                         end,
                         set = function(_, value)
-                            copyDatabase.messageCount = value
+                            databaseCopy.messageCount = value
 
                             CopyModule:UpdateMessageCount(index, value)
                         end

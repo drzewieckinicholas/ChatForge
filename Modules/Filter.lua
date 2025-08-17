@@ -24,17 +24,17 @@ function FilterModule:ShouldFilterMessage(chatFrame, message)
     end
 
     local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
-    local filterDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
+    local databaseFilter = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
 
-    if not filterDatabase.isEnabled or #filterDatabase.words == 0 then
+    if not databaseFilter.isEnabled or #databaseFilter.words == 0 then
         return false
     end
 
     return FilterUtils:MessageContainsFilterWord({
         message = message,
-        words = filterDatabase.words,
-        isCaseSensitive = filterDatabase.isCaseSensitive,
-        isExactMatch = filterDatabase.isExactMatch
+        words = databaseFilter.words,
+        isCaseSensitive = databaseFilter.isCaseSensitive,
+        isExactMatch = databaseFilter.isExactMatch
     })
 end
 
@@ -49,17 +49,17 @@ function FilterModule:AddFilterWord(chatFrame, word)
     end
 
     local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
-    local filterDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
+    local databaseFilter = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
 
     if FilterUtils:FilterWordExists({
             word = normalizedWord,
-            words = filterDatabase.words,
-            isCaseSensitive = filterDatabase.isCaseSensitive
+            words = databaseFilter.words,
+            isCaseSensitive = databaseFilter.isCaseSensitive
         }) then
         return false, 'Filter word already exists'
     end
 
-    table_insert(filterDatabase.words, normalizedWord)
+    table_insert(databaseFilter.words, normalizedWord)
 
     return true
 end
@@ -69,11 +69,11 @@ end
 --- @param word string
 function FilterModule:RemoveFilterWord(chatFrame, word)
     local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
-    local filterDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
+    local databaseFilter = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
 
-    for index, filterWord in ipairs(filterDatabase.words) do
+    for index, filterWord in ipairs(databaseFilter.words) do
         if filterWord == word then
-            table_remove(filterDatabase.words, index)
+            table_remove(databaseFilter.words, index)
 
             return true
         end
@@ -86,9 +86,9 @@ end
 --- @param chatFrame table
 function FilterModule:ClearFilterWords(chatFrame)
     local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
-    local filterDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
+    local databaseFilter = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
 
-    wipe(filterDatabase.words)
+    wipe(databaseFilter.words)
 end
 
 --- Creates a message filter function for a specific chat frame.
@@ -147,9 +147,9 @@ end
 --- @param chatFrame table
 function FilterModule:UpdateFilterState(chatFrame)
     local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
-    local filterDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
+    local databaseFilter = DatabaseUtils.GetChatFramesTable(chatFrameId, 'filter')
 
-    if filterDatabase.isEnabled then
+    if databaseFilter.isEnabled then
         self:RegisterFiltersForChatFrame(chatFrame)
     else
         self:UnregisterFiltersForChatFrame(chatFrame)

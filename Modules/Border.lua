@@ -42,21 +42,21 @@ local function initializeBorderFrame(chatFrame, index)
         borderFrame = createBorderFrame(chatFrame, index)
     end
 
-    local borderDatabase = DatabaseUtils.GetChatFramesTable(index, 'border')
+    local databaseBorder = DatabaseUtils.GetChatFramesTable(index, 'border')
 
     borderFrame:SetBackdrop({
-        edgeFile = borderDatabase.texture,
-        edgeSize = borderDatabase.size,
+        edgeFile = databaseBorder.texture,
+        edgeSize = databaseBorder.size,
         insets = { left = 0, right = 0, top = 0, bottom = 0 }
     })
 
-    local color = borderDatabase.color
+    local color = databaseBorder.color
 
     borderFrame:SetBackdropBorderColor(color[1], color[2], color[3], color[4])
 
-    BorderModule:UpdateBorderMargin(index, borderDatabase.margin)
+    BorderModule:UpdateBorderMargin(index, databaseBorder.margin)
 
-    borderFrame:SetShown(borderDatabase.isEnabled)
+    borderFrame:SetShown(databaseBorder.isEnabled)
 end
 
 --- Updates the border margin for a chat frame.
@@ -114,15 +114,15 @@ function BorderModule:UpdateBorderSize(index, size)
         return
     end
 
-    local borderDatabase = DatabaseUtils.GetChatFramesTable(index, 'border')
+    local databaseBorder = DatabaseUtils.GetChatFramesTable(index, 'border')
 
     borderFrame:SetBackdrop({
-        edgeFile = borderDatabase.texture,
+        edgeFile = databaseBorder.texture,
         edgeSize = size,
         insets = { left = 0, right = 0, top = 0, bottom = 0 }
     })
 
-    local color = borderDatabase.color
+    local color = databaseBorder.color
 
     borderFrame:SetBackdropBorderColor(color[1], color[2], color[3], color[4])
 end
@@ -140,15 +140,15 @@ function BorderModule:UpdateBorderTexture(index, texture)
         return
     end
 
-    local borderDatabase = DatabaseUtils.GetChatFramesTable(index, 'border')
+    local databaseBorder = DatabaseUtils.GetChatFramesTable(index, 'border')
 
     borderFrame:SetBackdrop({
         edgeFile = texture,
-        edgeSize = borderDatabase.size,
+        edgeSize = databaseBorder.size,
         insets = { left = 0, right = 0, top = 0, bottom = 0 }
     })
 
-    local color = borderDatabase.color
+    local color = databaseBorder.color
 
     borderFrame:SetBackdropBorderColor(color[1], color[2], color[3], color[4])
 end

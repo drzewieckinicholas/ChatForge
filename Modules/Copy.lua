@@ -151,8 +151,8 @@ function CopyModule:ShowCopyDialog(chatFrame)
         handleDialogClose(dialogKey)
     end
 
-    local copyDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'copy')
-    local messageCount = copyDatabase.messageCount or CopyConstants.Messages.DEFAULT_COUNT
+    local databaseCopy = DatabaseUtils.GetChatFramesTable(chatFrameId, 'copy')
+    local messageCount = databaseCopy.messageCount or CopyConstants.Messages.DEFAULT_COUNT
 
     local messagesText = buildFormattedMessagesText(chatFrame, messageCount)
 
@@ -192,9 +192,9 @@ function CopyModule:UpdateCopyIsEnabled(index, isEnabled)
     assert(type(index) == 'number', string_format(ERROR_MESSAGES.INDEX_TYPE, type(index)))
     assert(type(isEnabled) == 'boolean', string_format(ERROR_MESSAGES.ENABLED_TYPE, type(isEnabled)))
 
-    local copyDatabase = DatabaseUtils.GetChatFramesTable(index, 'copy')
+    local databaseCopy = DatabaseUtils.GetChatFramesTable(index, 'copy')
 
-    copyDatabase.isEnabled = isEnabled
+    databaseCopy.isEnabled = isEnabled
 end
 
 --- Updates the message count for a chat frame.
@@ -204,9 +204,9 @@ function CopyModule:UpdateMessageCount(index, messageCount)
     assert(type(index) == 'number', string_format(ERROR_MESSAGES.INDEX_TYPE, type(index)))
     assert(type(messageCount) == 'number', string_format(ERROR_MESSAGES.COUNT_TYPE, type(messageCount)))
 
-    local copyDatabase = DatabaseUtils.GetChatFramesTable(index, 'copy')
+    local databaseCopy = DatabaseUtils.GetChatFramesTable(index, 'copy')
 
-    copyDatabase.messageCount = messageCount
+    databaseCopy.messageCount = messageCount
 end
 
 function CopyModule:OnDisable()
