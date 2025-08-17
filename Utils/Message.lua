@@ -1,11 +1,11 @@
+local string_gsub = string.gsub
+
 --- @class Private
 local Private = select(2, ...)
 
 Private.Utils = Private.Utils or {}
 
 local MessageUtils = {}
-
-local string_gsub = string.gsub
 
 --- Extracts protected ID from a potential protected string.
 --- @param potentialProtectedString string
