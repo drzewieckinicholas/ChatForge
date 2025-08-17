@@ -1,15 +1,15 @@
+local string_find = string.find
+local string_format = string.format
+local string_gsub = string.gsub
+local string_lower = string.lower
+local type = type
+
 --- @class Private
 local Private = select(2, ...)
 
 Private.Utils = Private.Utils or {}
 
 local FilterUtils = {}
-
-local string_find = string.find
-local string_format = string.format
-local string_gsub = string.gsub
-local string_lower = string.lower
-local type = type
 
 local ERROR_MESSAGES = {
     MESSAGE_TYPE = 'Expected options.message to be a string, got %s',

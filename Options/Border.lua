@@ -14,7 +14,7 @@ local DatabaseUtils = Private.Utils.Database
 --- @param chatFrame table
 --- @param index number
 function BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index)
-    local borderDatabase = DatabaseUtils.GetChatFramesTable(index, 'border')
+    local databaseBorder = DatabaseUtils.GetChatFramesTable(index, 'border')
 
     return {
         order = 1,
@@ -29,10 +29,10 @@ function BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 desc = 'Enable border for this chat frame.',
                 width = 'full',
                 get = function()
-                    return borderDatabase.isEnabled
+                    return databaseBorder.isEnabled
                 end,
                 set = function(_, value)
-                    borderDatabase.isEnabled = value
+                    databaseBorder.isEnabled = value
 
                     BorderModule:UpdateBorderIsEnabled(index, value)
                 end
@@ -43,7 +43,7 @@ function BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 name = 'Border Settings',
                 inline = true,
                 disabled = function()
-                    return not borderDatabase.isEnabled
+                    return not databaseBorder.isEnabled
                 end,
                 args = {
                     borderTexture = {
@@ -54,10 +54,10 @@ function BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         values = BorderConstants.Textures,
                         width = 'full',
                         get = function()
-                            return borderDatabase.texture
+                            return databaseBorder.texture
                         end,
                         set = function(_, value)
-                            borderDatabase.texture = value
+                            databaseBorder.texture = value
 
                             BorderModule:UpdateBorderTexture(index, value)
                         end
@@ -72,10 +72,10 @@ function BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         step = BorderConstants.Size.STEP,
                         width = 'full',
                         get = function()
-                            return borderDatabase.size
+                            return databaseBorder.size
                         end,
                         set = function(_, value)
-                            borderDatabase.size = value
+                            databaseBorder.size = value
 
                             BorderModule:UpdateBorderSize(index, value)
                         end
@@ -90,10 +90,10 @@ function BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         step = BorderConstants.Margin.STEP,
                         width = 'full',
                         get = function()
-                            return borderDatabase.margin
+                            return databaseBorder.margin
                         end,
                         set = function(_, value)
-                            borderDatabase.margin = value
+                            databaseBorder.margin = value
 
                             BorderModule:UpdateBorderMargin(index, value)
                         end
@@ -106,15 +106,15 @@ function BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         hasAlpha = true,
                         width = 'full',
                         get = function()
-                            return borderDatabase.color[1],
-                                borderDatabase.color[2],
-                                borderDatabase.color[3],
-                                borderDatabase.color[4]
+                            return databaseBorder.color[1],
+                                databaseBorder.color[2],
+                                databaseBorder.color[3],
+                                databaseBorder.color[4]
                         end,
                         set = function(_, red, green, blue, alpha)
-                            borderDatabase.color = { red, green, blue, alpha }
+                            databaseBorder.color = { red, green, blue, alpha }
 
-                            BorderModule:UpdateBorderColor(index, borderDatabase.color)
+                            BorderModule:UpdateBorderColor(index, databaseBorder.color)
                         end
                     },
                     resetBorderColor = {
@@ -124,9 +124,9 @@ function BorderOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         desc = 'Reset border color to default.',
                         width = 'full',
                         func = function()
-                            borderDatabase.color = { unpack(BorderConstants.Color.DEFAULT) }
+                            databaseBorder.color = { unpack(BorderConstants.Color.DEFAULT) }
 
-                            BorderModule:UpdateBorderColor(index, borderDatabase.color)
+                            BorderModule:UpdateBorderColor(index, databaseBorder.color)
                         end
                     }
                 }

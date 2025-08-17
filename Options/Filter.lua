@@ -22,10 +22,10 @@ local newFilterWords = {}
 --- @param chatFrame table
 --- @param index number
 local function createFilterWordList(chatFrame, index)
-    local filterDatabase = DatabaseUtils.GetChatFramesTable(index, 'filter')
+    local databaseFilter = DatabaseUtils.GetChatFramesTable(index, 'filter')
     local args = {}
 
-    if #filterDatabase.words == 0 then
+    if #databaseFilter.words == 0 then
         args.noWords = {
             order = 1,
             type = 'description',
@@ -33,7 +33,7 @@ local function createFilterWordList(chatFrame, index)
             fontSize = 'medium'
         }
     else
-        for wordIndex, word in ipairs(filterDatabase.words) do
+        for wordIndex, word in ipairs(databaseFilter.words) do
             args['word' .. wordIndex] = {
                 order = wordIndex,
                 type = 'group',
@@ -85,7 +85,7 @@ end
 --- @param chatFrame table
 --- @param index number
 function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
-    local filterDatabase = DatabaseUtils.GetChatFramesTable(index, 'filter')
+    local databaseFilter = DatabaseUtils.GetChatFramesTable(index, 'filter')
 
     -- Stores this chat frame's new filter word.
     newFilterWords[index] = newFilterWords[index] or ''
@@ -96,7 +96,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
         name = 'Filter Words',
         inline = true,
         disabled = function()
-            return not filterDatabase.isEnabled
+            return not databaseFilter.isEnabled
         end,
         args = createFilterWordList(chatFrame, index)
     }
@@ -104,7 +104,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
     filterWordsGroups[index] = filterWordsGroup
 
     return {
-        order = 2,
+        order = 3,
         type = 'group',
         name = FilterModule.moduleName,
         desc = 'Configure message filtering.',
@@ -116,10 +116,10 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 desc = 'Enable message filtering for this chat frame.',
                 width = 'full',
                 get = function()
-                    return filterDatabase.isEnabled
+                    return databaseFilter.isEnabled
                 end,
                 set = function(_, value)
-                    filterDatabase.isEnabled = value
+                    databaseFilter.isEnabled = value
 
                     FilterModule:UpdateFilterState(chatFrame)
                 end
@@ -130,7 +130,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 name = 'Filter Settings',
                 inline = true,
                 disabled = function()
-                    return not filterDatabase.isEnabled
+                    return not databaseFilter.isEnabled
                 end,
                 args = {
                     isCaseSensitive = {
@@ -140,10 +140,10 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         desc = 'Enable case-sensitive matching.',
                         width = 'full',
                         get = function()
-                            return filterDatabase.isCaseSensitive
+                            return databaseFilter.isCaseSensitive
                         end,
                         set = function(_, value)
-                            filterDatabase.isCaseSensitive = value
+                            databaseFilter.isCaseSensitive = value
                         end
                     },
                     isExactMatch = {
@@ -153,10 +153,10 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         desc = 'Match whole words only.',
                         width = 'full',
                         get = function()
-                            return filterDatabase.isExactMatch
+                            return databaseFilter.isExactMatch
                         end,
                         set = function(_, value)
-                            filterDatabase.isExactMatch = value
+                            databaseFilter.isExactMatch = value
                         end
                     }
                 }
@@ -167,7 +167,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 name = 'Add Filter Word',
                 inline = true,
                 disabled = function()
-                    return not filterDatabase.isEnabled
+                    return not databaseFilter.isEnabled
                 end,
                 args = {
                     wordInput = {
@@ -217,7 +217,7 @@ function FilterOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                 desc = 'Remove all filter words for this chat frame.',
                 width = 'full',
                 disabled = function()
-                    return not filterDatabase.isEnabled or #filterDatabase.words == 0
+                    return not databaseFilter.isEnabled or #databaseFilter.words == 0
                 end,
                 confirm = function()
                     return 'Are you sure you want to clear all filter words?'
