@@ -1,3 +1,6 @@
+local table_insert = table.insert
+local table_remove = table.remove
+
 --- @class Private
 local Private = select(2, ...)
 
@@ -56,7 +59,7 @@ function FilterModule:AddFilterWord(chatFrame, word)
         return false, 'Filter word already exists'
     end
 
-    table.insert(filterDatabase.words, normalizedWord)
+    table_insert(filterDatabase.words, normalizedWord)
 
     return true
 end
@@ -70,7 +73,7 @@ function FilterModule:RemoveFilterWord(chatFrame, word)
 
     for index, filterWord in ipairs(filterDatabase.words) do
         if filterWord == word then
-            table.remove(filterDatabase.words, index)
+            table_remove(filterDatabase.words, index)
 
             return true
         end

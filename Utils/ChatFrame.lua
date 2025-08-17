@@ -87,6 +87,49 @@ function ChatFrameUtils:GetChatFrameBackground(chatFrame)
     return _G[backgroundName]
 end
 
+--- Retrieves the chat frame associated with a chat tab.
+--- @param chatTab table
+--- @return table|nil
+function ChatFrameUtils:GetChatFrameFromTab(chatTab)
+    if not chatTab then
+        return nil
+    end
+
+    -- Modern WoW stores the chat frame reference directly.
+    if chatTab.chatFrame then
+        return chatTab.chatFrame
+    end
+
+    -- Fallback: Use the tab's ID to get the corresponding chat frame.
+    local tabId = chatTab:GetID()
+
+    if tabId then
+        return self:GetChatFrame(tabId)
+    end
+
+    return nil
+end
+
+--- Iterates through messages in a chat frame.
+--- @param chatFrame table
+--- @param callback function
+--- @param maxMessages? number
+function ChatFrameUtils:ForEachChatFrameMessage(chatFrame, callback, maxMessages)
+    if not chatFrame or not callback then
+        return
+    end
+
+    local numMessages = chatFrame:GetNumMessages()
+
+    for index = 1, numMessages do
+        local text, red, green, blue = chatFrame:GetMessageInfo(index)
+
+        if text and text ~= '' then
+            callback(text, red, green, blue)
+        end
+    end
+end
+
 --- Retrieves the ID of a chat frame.
 --- @param chatFrame table
 --- @return number

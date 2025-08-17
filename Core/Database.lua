@@ -15,6 +15,10 @@ local defaults = {
         size = 12,
         texture = 'Interface\\Tooltips\\UI-Tooltip-Border'
     },
+    copy = {
+        isEnabled = false,
+        messageCount = 50
+    },
     filter = {
         isCaseSensitive = false,
         isEnabled = false,
@@ -31,6 +35,7 @@ local defaults = {
 function Database.GetChatFrameDefaults()
     return {
         border = defaults.border,
+        copy = defaults.copy,
         filter = defaults.filter,
         font = defaults.font
     }

@@ -15,10 +15,10 @@ local DatabaseUtils = Private.Utils.Database
 --- @param chatFrame table
 --- @param index number
 function FontOptions:CreateOptionsTableForChatFrame(chatFrame, index)
-    local databaseFont = DatabaseUtils.GetChatFramesTable(index, 'font')
+    local fontDatabase = DatabaseUtils.GetChatFramesTable(index, 'font')
 
     return {
-        order = 3,
+        order = 4,
         type = 'group',
         name = FontModule.moduleName,
         desc = 'Configure font appearance.',
@@ -39,10 +39,10 @@ function FontOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         step = FontConstants.Size.STEP,
                         width = 'full',
                         get = function(_)
-                            return databaseFont.size
+                            return fontDatabase.size
                         end,
                         set = function(_, value)
-                            databaseFont.size = value
+                            fontDatabase.size = value
 
                             FontModule:UpdateFont(chatFrame, { size = value })
                         end,
@@ -55,10 +55,10 @@ function FontOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         values = FontConstants.Names,
                         width = 'full',
                         get = function(_)
-                            return databaseFont.name
+                            return fontDatabase.name
                         end,
                         set = function(_, value)
-                            databaseFont.name = value
+                            fontDatabase.name = value
 
                             FontModule:UpdateFont(chatFrame, { name = value })
                         end,
@@ -71,10 +71,10 @@ function FontOptions:CreateOptionsTableForChatFrame(chatFrame, index)
                         values = FontConstants.Styles,
                         width = 'full',
                         get = function(_)
-                            return databaseFont.style
+                            return fontDatabase.style
                         end,
                         set = function(_, value)
-                            databaseFont.style = value
+                            fontDatabase.style = value
 
                             FontModule:UpdateFont(chatFrame, { style = value })
                         end,

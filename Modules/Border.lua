@@ -1,3 +1,6 @@
+local string_format = string.format
+local type = type
+
 --- @class Private
 local Private = select(2, ...)
 
@@ -7,11 +10,6 @@ local BorderModule = Private.Addon:NewModule('Border')
 local ChatFrameUtils = Private.Utils.ChatFrame
 local DatabaseUtils = Private.Utils.Database
 
-local borderFrames = {}
-
-local string_format = string.format
-local type = type
-
 local ERROR_MESSAGES = {
     COLOR_TYPE = 'Expected color to be a table, got %s',
     INDEX_TYPE = 'Expected index to be a number, got %s',
@@ -19,6 +17,8 @@ local ERROR_MESSAGES = {
     SIZE_TYPE = 'Expected size to be a number, got %s',
     TEXTURE_TYPE = 'Expected texture to be a string, got %s'
 }
+
+local borderFrames = {}
 
 --- Creates a border frame for a chat frame.
 --- @param chatFrame table

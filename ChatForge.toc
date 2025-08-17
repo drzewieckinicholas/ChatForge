@@ -15,16 +15,20 @@ Init\Init.lua
 
 # Constants
 Constants\Border.lua
+Constants\Copy.lua
 Constants\Filter.lua
 Constants\Font.lua
 
 # Utils
 Utils\ChatFrame.lua
+Utils\Color.lua
 Utils\Database.lua
 Utils\Filter.lua
+Utils\Message.lua
 
 # Modules
 Modules\Border.lua
+Modules\Copy.lua
 Modules\Filter.lua
 Modules\Font.lua
 
@@ -37,6 +41,7 @@ Core\Core.lua
 
 # Options
 Options\Border.lua
+Options\Copy.lua
 Options\Filter.lua
 Options\Font.lua
 Options\Options.lua

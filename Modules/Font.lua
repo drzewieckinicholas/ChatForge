@@ -35,11 +35,11 @@ function FontModule:UpdateFont(chatFrame, fontOptions)
 
     if not fontName or not fontSize or not fontStyle then
         local chatFrameId = ChatFrameUtils:GetChatFrameId(chatFrame)
-        local databaseFont = DatabaseUtils.GetChatFramesTable(chatFrameId, 'font')
+        local fontDatabase = DatabaseUtils.GetChatFramesTable(chatFrameId, 'font')
 
-        fontName = fontName or databaseFont.name
-        fontSize = fontSize or databaseFont.size
-        fontStyle = fontStyle or databaseFont.style
+        fontName = fontName or fontDatabase.name
+        fontSize = fontSize or fontDatabase.size
+        fontStyle = fontStyle or fontDatabase.style
     end
 
     assert(type(fontName) == 'string', ERROR_MESSAGES.FONTNAME_TYPE:format(type(fontName)))
