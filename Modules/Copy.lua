@@ -125,7 +125,8 @@ local function createDialogFrame()
     frame:EnableResize(false)
 
     frame.frame:SetClampedToScreen(true)
-    frame.frame:SetFrameStrata(CopyConstants.FRAME_STRATA)
+    -- So it does not cover the Main Menu.
+    frame.frame:SetFrameStrata(CopyConstants.Dialog.FRAME_STRATA)
 
     return frame
 end

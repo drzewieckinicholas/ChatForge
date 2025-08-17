@@ -13,7 +13,11 @@ local ColorUtils = {}
 --- @param blue number
 --- @return string
 function ColorUtils:ConvertRGBToHex(red, green, blue)
-    return string_format('|cff%02x%02x%02x', red * 255, green * 255, blue * 255)
+    if red and green and blue then
+        return string.format('|cff%02x%02x%02x', red * 255, green * 255, blue * 255)
+    else
+        return '|cffffffff'
+    end
 end
 
 Private.Utils.Color = ColorUtils
